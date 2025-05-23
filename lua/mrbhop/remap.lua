@@ -36,6 +36,6 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
 -- toggle word-wrap
-vim.keymap.set("n", "<leader>tw", function() vim.opt.wrap = not vim.opt.wrap:get() end)
+vim.keymap.set("n", "<leader>tw", function() vim.opt.wrap = not vim.o.wrap end)
 -- toggle highlight search
-vim.keymap.set("n", "<leader>th", function() vim.opt.hlsearch = not vim.opt.hlsearch:get() end)
+vim.keymap.set("n", "<leader>th", function() vim.opt.hlsearch = not vim.o.hlsearch end)
