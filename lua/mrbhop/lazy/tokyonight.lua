@@ -3,6 +3,10 @@ return {
 	lazy = false,
 	priority = 1000,
 	config = function()
-		vim.cmd([[colorscheme tokyonight]])
+		require("tokyonight").setup({
+			style = "storm",
+			transparent = true,
+		})
+		vim.cmd.colorscheme("tokyonight")
 	end,
 }
