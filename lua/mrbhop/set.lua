@@ -37,7 +37,7 @@ vim.opt.signcolumn = "yes"
 vim.g.have_nerd_font = true
 vim.opt.timeoutlen = 300
 vim.opt.cursorline = true
-
+vim.opt.cursorlineopt = "number"
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking text",
