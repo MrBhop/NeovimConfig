@@ -26,5 +26,10 @@ return {
 		end)
 		-- Vim help
 		vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
+				-- Live Grep
+		vim.keymap.set('n', '<leader>pls', function()
+			builtin.live_grep()
+		end)
+
 	end
 }
