@@ -35,7 +35,7 @@ vim.opt.ignorecase = true
 
 vim.opt.signcolumn = "yes"
 vim.g.have_nerd_font = true
-vim.opt.timeoutlen = 300
+vim.opt.timeout = false
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
 
