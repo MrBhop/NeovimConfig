@@ -23,8 +23,19 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 -- delete into void register
 vim.keymap.set("n", "<leader>d", "\"_d")
 vim.keymap.set("v", "<leader>d", "\"_d")
--- with paste
+
+--[[
+This one has the benefit of not polluting the register,
+but it doesn't work well when pasting at the end of a line.
+
+When pasting at the end of a line, the pasted text is placed before the last character before the selection.
+Since that is more important to me than a clean register right now, i'll experiment with the "pgvy" method.
+
 vim.keymap.set("v", "<leader>p", "\"_dP")
+--]]
+
+-- paste text and immediatly copy it back.
+vim.keymap.set("v", "<leader>p", "pgvy")
 
 -- Quickfix navigation
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
