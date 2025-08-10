@@ -7,6 +7,20 @@ return {
 			require("tokyonight").setup({
 				style = "storm",
 				transparent = true,
+				on_colors = function (colors)
+					colors.comment = "#828ab0"
+				end,
+				on_highlights = function (highlights, colors)
+					highlights.LineNr = {
+						fg = colors.terminal.white,
+					}
+					highlights.LineNrAbove = {
+						fg = colors.terminal.white,
+					}
+					highlights.LineNrBelow = {
+						fg = colors.terminal.white,
+					}
+				end,
 			})
 		end,
 	},
