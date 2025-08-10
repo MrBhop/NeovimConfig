@@ -1,5 +1,4 @@
--- This is not working correctly for some reason...
--- vim.opt.guicursor = ""
+vim.opt.guicursor = ""
 
 vim.opt.number = true
 vim.opt.relativenumber = true
