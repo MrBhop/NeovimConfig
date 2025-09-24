@@ -8,8 +8,6 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = false
 
-vim.opt.wrap = false
-
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = vim.fn.stdpath("data") .. package.config:sub(1, 1) .. "undo"
@@ -26,9 +24,18 @@ vim.opt.updatetime = 50
 
 vim.opt.smartindent = true
 
-vim.opt.cpo:remove { "_" }
+vim.opt.cpo:remove({ "_" })
+
+vim.opt.wrap = false
+vim.opt.linebreak = true
+vim.opt.breakindent = true
+vim.opt.showbreak = " ↪  "
 
 vim.opt.list = true
+vim.opt.listchars:append({ space = "-" })
+vim.opt.listchars:append({ lead = "-" })
+vim.opt.listchars:append({ eol = "↵" })
+vim.opt.listchars:append({ multispace = "+" })
 
 vim.opt.ignorecase = true
 
