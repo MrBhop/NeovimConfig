@@ -1,6 +1,11 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- run lua
+vim.keymap.set("n", "<leader><leader>x", ":source %<Enter>")
+vim.keymap.set("n", "<leader>x", ":.lua<Enter>")
+vim.keymap.set("v", "<leader>x", ":lua<Enter>")
+
 -- open netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
