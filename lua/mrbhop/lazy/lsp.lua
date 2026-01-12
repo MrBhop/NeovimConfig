@@ -16,7 +16,6 @@ return {
 	config = function()
 		vim.lsp.config("*", {
 			on_attach = function(_, bufnr)
-				print("init buffer specific lsp config")
 				local opts = {buffer = bufnr, remap = false}
 
 				vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -25,11 +24,35 @@ return {
 				vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
 				vim.keymap.set("n", "[d", function() vim.lsp.buf.goto_next() end, opts)
 				vim.keymap.set("n", "]d", function() vim.lsp.buf.goto_prev() end, opts)
+
+				--Toggle Virtual Lines
+				vim.keymap.set("n", "<leader>tvl", function()
+					if vim.diagnostic.config().virtual_lines then
+						vim.diagnostic.config({
+							virtual_lines = false,
+						})
+					else
+						vim.diagnostic.config({
+							virtual_lines = {
+								format = function (diagnostic)
+									return string.format("%s: %s", diagnostic.source, diagnostic.message)
+								end
+							},
+						})
+					end
+				end, opts)
 			end
 		})
 
+		vim.lsp.inlay_hint.enable()
+
 		vim.diagnostic.config({
-			virtual_text = true,
+			virtual_text = {
+				source = true,
+			},
+			float = {
+				source = true,
+			}
 		})
 	end,
 }
