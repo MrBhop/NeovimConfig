@@ -28,12 +28,6 @@ return {
 			end
 		})
 
-		vim.lsp.config("basedpyright", {
-			settings = {
-				locale = "en",
-			},
-		})
-
 		vim.diagnostic.config({
 			virtual_text = true,
 		})

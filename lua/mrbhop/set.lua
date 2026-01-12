@@ -32,6 +32,7 @@ vim.opt.breakindent = true
 vim.opt.showbreak = " ↪  "
 
 vim.opt.list = true
+vim.opt.listchars:append({ tab = "-->" })
 vim.opt.listchars:append({ space = "·" })
 vim.opt.listchars:append({ lead = "·" })
 vim.opt.listchars:append({ trail = "·" })
