@@ -14,7 +14,7 @@ return {
 		},
 	},
 	config = function()
-		vim.lsp.config("*", {
+		local config = {
 			on_attach = function(_, bufnr)
 				local opts = {buffer = bufnr, remap = false}
 
@@ -42,7 +42,11 @@ return {
 					end
 				end, opts)
 			end
-		})
+		}
+
+		-- ts_ls doesn't reacti to on_attach, if configured with "*"...
+		vim.lsp.config("ts_ls", config)
+		vim.lsp.config("*", config)
 
 		vim.lsp.inlay_hint.enable()
 
