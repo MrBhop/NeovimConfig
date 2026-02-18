@@ -15,8 +15,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- keep the cursor centered when jumping
 vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-d>", "M<C-d>zz")
-vim.keymap.set("n", "<C-u>", "M<C-u>zz")
+vim.keymap.set("n", "<C-d>", "zz<C-d>zz")
+vim.keymap.set("n", "<C-u>", "zz<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
