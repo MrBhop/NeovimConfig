@@ -25,6 +25,8 @@ return {
 				vim.keymap.set("n", "[d", function() vim.lsp.buf.goto_next() end, opts)
 				vim.keymap.set("n", "]d", function() vim.lsp.buf.goto_prev() end, opts)
 
+				vim.keymap.set("n", "<leader><leader>format", vim.lsp.buf.format, opts)
+
 				--Toggle Virtual Lines
 				vim.keymap.set("n", "<leader>tvl", function()
 					if vim.diagnostic.config().virtual_lines then

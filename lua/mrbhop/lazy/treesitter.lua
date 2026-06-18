@@ -3,10 +3,10 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		config = function ()
-			require("nvim-treesitter.configs").setup({
+			require("nvim-treesitter").setup({
 				modules = {},
 				ignore_install = {},
-				ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+				ensure_installed = {"lua", "vim", "vimdoc", "query","javascript", "html", "python", "css" },
 				sync_install = false,
 				auto_install = true,
 				highlight = { enable = true },
