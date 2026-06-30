@@ -5,6 +5,7 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 	},
+	version = "~0.0.2",
 	config = function()
 		local cmp = require("cmp")
 

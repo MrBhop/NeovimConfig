@@ -1,6 +1,6 @@
 return {
 	"j-hui/fidget.nvim",
-	config = function()
-		require("fidget").setup({})
-	end
+	version = "~2.0.0",
+	opts = {
+	},
 }

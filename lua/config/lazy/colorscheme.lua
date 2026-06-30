@@ -1,16 +1,17 @@
 return {
 	{
 		"folke/tokyonight.nvim",
+		version = "~4.14.1",
 		lazy = false,
 		priority = 1000,
 		config = function()
 			require("tokyonight").setup({
 				style = "storm",
 				transparent = true,
-				on_colors = function (colors)
+				on_colors = function(colors)
 					colors.comment = "#828ab0"
 				end,
-				on_highlights = function (highlights, colors)
+				on_highlights = function(highlights, colors)
 					highlights.LineNr = {
 						fg = colors.terminal.white,
 					}
@@ -26,6 +27,7 @@ return {
 	},
 	{
 		"rose-pine/neovim",
+		version = "~3.0.2",
 		lazy = false,
 		priority = 1000,
 		name = "rose-pine",
@@ -40,9 +42,10 @@ return {
 	},
 	{
 		"ellisonleao/gruvbox.nvim",
+		version = "~2.0.0",
 		lazy = false,
 		priority = 1000,
-		config = function ()
+		config = function()
 			require("gruvbox").setup({
 				transparent_mode = true,
 				contrast = "",
@@ -51,6 +54,7 @@ return {
 	},
 	{
 		"EdenEast/nightfox.nvim",
+		version = "~3.10.0",
 		lazy = false,
 		priority = 1000,
 		config = function()
