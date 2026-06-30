@@ -49,6 +49,7 @@ return {
 		-- ts_ls doesn't reacti to on_attach, if configured with "*"...
 		vim.lsp.config("ts_ls", config)
 		vim.lsp.config("*", config)
+		vim.lsp.config("rust_analyzer", config)
 
 		vim.lsp.inlay_hint.enable()
 
