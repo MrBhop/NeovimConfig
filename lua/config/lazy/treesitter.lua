@@ -5,14 +5,35 @@ return {
 		lazy = false,
 		build = ":TSUpdate",
 		config = function()
-			require("nvim-treesitter").setup({
-				modules = {},
-				ignore_install = {},
-				ensure_installed = { "lua", "vim", "vimdoc", "query", "javascript", "html", "python", "css" },
-				sync_install = false,
-				auto_install = true,
-				highlight = { enable = true },
-				indent = { enable = true },
+			local treesitter = require("nvim-treesitter")
+
+			treesitter.install({
+				"lua",
+				"vim",
+				"vimdoc",
+				"query",
+				"javascript",
+				"html",
+				"python",
+				"css"
+			})
+
+			local available_langs = treesitter.get_available()
+			local lang_is_available = function(lang)
+				return vim.tbl_contains(available_langs, lang)
+			end
+
+			vim.api.nvim_create_autocmd("FileType", {
+				desc = "",
+				group = vim.api.nvim_create_augroup("treesitter-auto-install", { clear = true }),
+				callback = function(ev)
+					local lang = vim.treesitter.language.get_lang(ev.match)
+					if lang_is_available(lang) then
+						treesitter.install(lang):wait()
+						vim.treesitter.start()
+						treesitter.indentexpr()
+					end
+				end,
 			})
 		end
 	},
