@@ -2,9 +2,11 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		"folke/lazydev.nvim",
+		"saghen/blink.lib",
 	},
 	config = function()
 		local config = {
+			capabilities = require("blink-cmp").get_lsp_capabilities(),
 			on_attach = function(_, bufnr)
 				local opts = { buffer = bufnr, remap = false }
 
