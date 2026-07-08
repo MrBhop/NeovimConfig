@@ -1,23 +1,23 @@
 return {
 	{
-		'saghen/blink.cmp',
+		"saghen/blink.cmp",
 		dependencies = {
-			'saghen/blink.lib',
+			"saghen/blink.lib",
 		},
 		-- known working commit: 9dcb1f3
 		build = function()
 			-- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)`
 			-- you can use `gb` in `:Lazy` to rebuild the plugin as needed
-			require('blink.cmp').build():pwait()
+			require("blink.cmp").build():pwait()
 		end,
 
-		---@module 'blink.cmp'
+		---@module "blink.cmp"
 		---@type blink.cmp.Config
 		opts = {
-			-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-			-- 'super-tab' for mappings similar to vscode (tab to accept)
-			-- 'enter' for enter to accept
-			-- 'none' for no mappings
+			-- "default" (recommended) for mappings similar to built-in completions (C-y to accept)
+			-- "super-tab" for mappings similar to vscode (tab to accept)
+			-- "enter" for enter to accept
+			-- "none" for no mappings
 			--
 			-- All presets have the following mappings:
 			-- C-space: Open menu or open docs if already open
@@ -26,15 +26,28 @@ return {
 			-- C-k: Toggle signature help (if signature.enabled = true)
 			--
 			-- See :h blink-cmp-config-keymap for defining your own keymap
-			keymap = { preset = 'default' },
+			keymap = { preset = "default" },
 			signature = { enabled = true },
 
 			-- (Default) Only show the documentation popup when manually triggered
-			completion = { documentation = { auto_show = true } },
+			completion = {
+				documentation = {
+					auto_show = true,
+					auto_show_delay_ms = 0,
+				},
+				accept = {
+					auto_brackets = {
+						enabled = false,
+					},
+				},
+			},
 
 			-- (Default) list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
-			sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer" },
+				providers = { lsp = { fallbacks = {} } },
+			},
 
 			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
 			-- You may use a lua implementation instead by using `implementation = "lua"`
