@@ -20,7 +20,13 @@ return {
 		end)
 
 		-- git files
-		vim.keymap.set('n', '<leader>gf', builtin.git_files)
+		vim.keymap.set('n', '<leader>gf', function()
+			local succeeded, _ = pcall(builtin.git_files)
+			if not succeeded then
+				vim.print("Error with 'builtin.git_files', falling back to 'find_files'")
+				builtin.find_files()
+			end
+		end)
 
 		-- project word search
 		vim.keymap.set('n', '<leader>pws', function()
