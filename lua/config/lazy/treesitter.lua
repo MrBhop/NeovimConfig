@@ -1,46 +1,8 @@
 return {
 	{
-		"nvim-treesitter/nvim-treesitter",
-		branch = "main",
-		lazy = false,
-		build = ":TSUpdate",
-		config = function()
-			local treesitter = require("nvim-treesitter")
-
-			treesitter.install({
-				"lua",
-				"vim",
-				"vimdoc",
-				"query",
-				"javascript",
-				"html",
-				"python",
-				"css"
-			})
-
-			local available_langs = treesitter.get_available()
-			local lang_is_available = function(lang)
-				return vim.tbl_contains(available_langs, lang)
-			end
-
-			vim.api.nvim_create_autocmd("FileType", {
-				desc = "",
-				group = vim.api.nvim_create_augroup("treesitter-auto-install", { clear = true }),
-				callback = function(ev)
-					local lang = vim.treesitter.language.get_lang(ev.match)
-					if lang_is_available(lang) then
-						treesitter.install(lang):wait()
-						vim.treesitter.start()
-						treesitter.indentexpr()
-					end
-				end,
-			})
-		end
-	},
-	{
 		"nvim-treesitter/nvim-treesitter-context",
 		version = "~1.0.0",
-		after = "nvim-treesitter",
+		dependencies = "nvim-treesitter",
 		config = function()
 			require('treesitter-context').setup {
 				enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
@@ -58,5 +20,25 @@ return {
 				on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
 			}
 		end
-	}
+	},
+	{
+		"romus204/tree-sitter-manager.nvim",
+		dependencies = {}, -- tree-sitter CLI must be installed system-wide
+		enabled = true,
+		config = function()
+			require("tree-sitter-manager").setup({
+				auto_install = true,
+				ensure_installed = {
+					"lua",
+					"vim",
+					"vimdoc",
+					"query",
+					"javascript",
+					"html",
+					"python",
+					"css"
+				},
+			})
+		end,
+	},
 }

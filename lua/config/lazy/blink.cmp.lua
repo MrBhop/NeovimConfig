@@ -4,7 +4,8 @@ return {
 		dependencies = {
 			"saghen/blink.lib",
 		},
-		-- known working commit: 9dcb1f3
+		-- known working commit
+		commit = "9dcb1f3a9164f10c8950a790aace576f2e89dc78",
 		build = function()
 			-- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)`
 			-- you can use `gb` in `:Lazy` to rebuild the plugin as needed

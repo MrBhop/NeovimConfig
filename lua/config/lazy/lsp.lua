@@ -42,6 +42,8 @@ return {
 		vim.lsp.config("ts_ls", config)
 		-- rust_analyzer doesn't either...
 		vim.lsp.config("rust_analyzer", config)
+		-- nothing does... wtf?
+		vim.lsp.config("hls", config)
 
 		vim.lsp.config("*", config)
 
