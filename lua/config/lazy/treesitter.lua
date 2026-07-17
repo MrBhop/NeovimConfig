@@ -17,7 +17,14 @@ return {
 				-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
 				separator = nil,
 				zindex = 20, -- The Z-index of the context window
-				on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+				on_attach = function(bufnr)
+					local opts = { buffer = bufnr, remap = false }
+					local treesitter_context = require("treesitter-context")
+					vim.keymap.set("n", "<leader><leader>contexton", treesitter_context.enable, opts)
+					vim.keymap.set("n", "<leader><leader>contextoff", treesitter_context.disable, opts)
+
+					return true
+				end, -- (fun(buf: integer): boolean) return false to disable attaching
 			}
 		end
 	},
