@@ -2,7 +2,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter-context",
 		version = "~1.0.0",
-		dependencies = "nvim-treesitter",
+		dependencies = "nvim-treesitter/nvim-treesitter",
 		config = function()
 			require('treesitter-context').setup {
 				enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
