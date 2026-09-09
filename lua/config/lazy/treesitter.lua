@@ -1,19 +1,56 @@
 return {
 	{
+		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
+		build = ":TSUpdate",
+		config = function()
+			local treesitter = require("nvim-treesitter")
+
+			treesitter.install({
+				"lua",
+				"vim",
+				"vimdoc",
+				"query",
+				"javascript",
+				"html",
+				"python",
+				"css"
+			})
+
+			local available_langs = treesitter.get_available()
+			local lang_is_available = function(lang)
+				return vim.tbl_contains(available_langs, lang)
+			end
+
+			vim.api.nvim_create_autocmd("FileType", {
+				desc = "",
+				group = vim.api.nvim_create_augroup("treesitter-auto-install", { clear = true }),
+				callback = function(ev)
+					local lang = vim.treesitter.language.get_lang(ev.match)
+					if lang_is_available(lang) then
+						treesitter.install(lang):wait()
+						vim.treesitter.start()
+						treesitter.indentexpr()
+					end
+				end,
+			})
+		end,
+	},
+	{
 		"nvim-treesitter/nvim-treesitter-context",
 		version = "~1.0.0",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		config = function()
-			require('treesitter-context').setup {
+			require("treesitter-context").setup {
 				enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
 				multiwindow = true, -- Enable multiwindow support.
 				max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
 				min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
 				line_numbers = true,
 				multiline_threshold = 20, -- Maximum number of lines to show for a single context
-				trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-				mode = 'cursor', -- Line used to calculate context. Choices: 'cursor', 'topline'
-				-- Separator between context and content. Should be a single character string, like '-'.
+				trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: "inner", "outer"
+				mode = "cursor", -- Line used to calculate context. Choices: "cursor", "topline"
+				-- Separator between context and content. Should be a single character string, like "-".
 				-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
 				separator = nil,
 				zindex = 20, -- The Z-index of the context window
@@ -27,25 +64,5 @@ return {
 				end, -- (fun(buf: integer): boolean) return false to disable attaching
 			}
 		end
-	},
-	{
-		"romus204/tree-sitter-manager.nvim",
-		dependencies = {}, -- tree-sitter CLI must be installed system-wide
-		enabled = true,
-		config = function()
-			require("tree-sitter-manager").setup({
-				auto_install = true,
-				ensure_installed = {
-					"lua",
-					"vim",
-					"vimdoc",
-					"query",
-					"javascript",
-					"html",
-					"python",
-					"css"
-				},
-			})
-		end,
 	},
 }
