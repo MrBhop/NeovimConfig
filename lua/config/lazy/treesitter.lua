@@ -2,6 +2,8 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,
+		-- known good commit
+		commit = "5cb0114e6242625db56dd6440e945ed1ece10bc7",
 		build = ":TSUpdate",
 		config = function()
 			local treesitter = require("nvim-treesitter")
