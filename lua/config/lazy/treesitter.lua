@@ -32,7 +32,7 @@ return {
 					if lang_is_available(lang) then
 						treesitter.install(lang):wait()
 						vim.treesitter.start()
-						treesitter.indentexpr()
+						vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 					end
 				end,
 			})
